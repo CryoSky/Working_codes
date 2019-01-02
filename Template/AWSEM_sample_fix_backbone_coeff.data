@@ -1,0 +1,144 @@
+# 20180425 Shikai's standard structure prediction version 1.0
+# 20180508 Shikai's standard structure prediction version 1.1
+[Chain]
+60.0 60.0 60.0 
+2.459108 2.519591 2.466597
+
+[Chi]
+60.0 -0.71
+
+[Epsilon]
+1.0
+
+[Rama]
+2.0
+5
+ 1.3149  15.398 0.15   1.74 0.65 -2.138
+1.32016 49.0521 0.25  1.265 0.45  0.318
+ 1.0264 49.0954 0.65 -1.3 0.25  -0.5
+    2.0   99.0  1.0  1.1  1.0  0.820
+    2.0  15.398  1.0   2.25  1.0  -2.16
+    
+# See the Supplement of doi:10.1021/jp212541y, several parameters has changed
+# But nobody knows who did it, maybe Ha, Weihua or Bobby.
+# 1.041 changed to -1.3, 0.78 changed to -0.5, 419.0 changed to 99.0, -0.895 changed to 1.1, delete proline part
+# 5 means turn on the effect of all 5 rows, if you want turn off secondary bias use 3
+
+[Rama_P]
+3
+ 0.0    0.0 1.0   0.0  1.0   0.0
+2.17 105.52 1.0 1.153 0.15  -2.4
+2.15 109.09 1.0  0.95 0.15 0.218
+ 0.0    0.0 1.0   0.0  2.0   0.0
+ 0.0    0.0 1.0   0.0  2.0   0.0
+
+[SSWeight]
+0 0 0 1 1 0
+0 0 0 0 0 0
+
+[ABC]
+0.4831806 0.703282 -0.1864262
+0.4436538 0.2352006 0.3211455
+0.841 0.89296 -0.73389
+
+[Dssp_Hdrgn]
+0.5
+0.0  0.0
+1.37  0.0  3.49 1.30 1.32 1.22   0.0
+1.36  0.0  3.50 1.30 1.32 1.22   3.47  0.33 1.01
+1.17  0.0  3.52 1.30 1.32 1.22   3.62  0.33 1.01
+0.76   0.68
+2.06   2.98
+7.0
+1.0    0.5
+4.0
+
+# 20180405 Mingchen told the last line from 12.0 to 8.0, based on results from Xun
+# 20180508 From 8.0 to 4.0
+
+[P_AP]
+0.5
+1.5
+1.0 0.4 0.4
+8.0
+7.0
+5 8
+4
+
+[Water]
+0.75
+5.0 7.0
+2.6
+10
+2
+4.5 6.5 3.0 8.0 1
+6.5 9.5 5.0 11.0 1
+
+[Burial]
+1.0
+4.0
+0.0 3.0
+3.0 6.0
+6.0 9.0
+
+[Helix]
+0.5
+2.0 -1.0
+7.0 7.0
+3.0
+4
+15.0
+4.5 6.5 3.0 8.0
+0.77 0.68 0.07 0.15 0.23 0.33 0.27 0.0 0.06 0.23 0.62 0.65 0.50 0.41 -3.0 0.35 0.11 0.45 0.17 0.14
+0 -3.0
+0.76 0.68
+2.1558 2.9862
+
+[Native_Bias]
+200
+1.0
+2
+0.15
+2.0
+rnative.dat
+
+# This term use for HO version
+# 1st line is strength, 2nd is epsilon, 3rd is sequence separation, 4th is sigma factor, 5th is cutoff distance
+# From https://wiki.rice.edu/confluence/display/WOLYNES/AWSEM-HO%3A+template+based+modeling
+# This section is used for AWSEM-HO version
+
+[Fragment_Memory_Table]
+0.01
+Hybrid.mem
+seq.gamma
+0 50 0.01
+1.0
+0
+0.15
+
+# 20180405 Mingchen told to change the fifth line from 0.1 to 1.0
+# 20180423 Original 2nd line is frag_HO.mem, here we change to Hybrid for HO version
+
+[DebyeHuckel]-
+10.0 10.0 10.0
+1.0
+10.0 
+1
+
+[Tertiary_Frustratometer]-
+10
+1000
+1
+configurational
+
+# 1st line is contact cut-off, 2nd is number of decoys, 4th line has three choices configurational / mutational / singleresidue
+
+[AMH-Go]
+1.0
+1.0
+12.0
+2
+
+# This term use for ER version
+# 1st line is k_amh_go, 2nd is amh_go_p, 3rd is amh_go_rc, 4th is frustration_censoring_flag, if is 1, read in frustration censored interactions; if is 2, read in rnative distances for DCA predicted Go
+# See https://github.com/adavtyan/awsemmd/wiki/AMHGoModelAndUmbrellaSampling

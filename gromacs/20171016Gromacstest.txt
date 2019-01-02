@@ -1,0 +1,28 @@
+#!/bin/bash
+#SBATCH --job-name=20171016Gromacstest1
+#SBATCH --ntasks=1
+#SBATCH --mem-per-cpu=1000m
+#SBATCH --time=12:00:00
+#SBATCH --export=ALL
+#SBATCH --mail-user=Shikai.Jin@rice.edu
+#SBATCH --mail-type=ALL
+#SBATCH --output=batch_test_%A_%a.out
+
+
+echo "My job ran on:" $SLURM_NODELIST
+echo My jobid was $SLURM_JOBID and my taskid was $SLURM_ARRAY_TASK_ID
+echo My job array jobid was $SLURM_ARRAY_JOB_ID
+echo My submission directory was $SLURM_SUBMIT_DIR
+
+
+if [[ -d $SHARED_SCRATCH/$USER && -w $SHARED_SCRATCH/$USER ]]
+
+        then
+
+        mkdir -p $SHARED_SCRATCH/$USER/$SLURM_JOB_NAME/$SLURM_ARRAY_JOB_ID/
+        cd $SHARED_SCRATCH/$USER/$SLURM_JOB_NAME/$SLURM_ARRAY_JOB_ID/
+        ln -s $SLURM_SUBMIT_DIR/mdpfile.v5.mdp .
+        ln -s $SLURM_SUBMIT_DIR/Test1.21170.pdb* .
+        ln -s $SLURM_SUBMIT_DIR/run.tpr .
+        gmx mdrun -s $SLURM_SUBMIT_DIR/run.tpr -noddchec
+fi
